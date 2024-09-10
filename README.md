@@ -1,0 +1,1 @@
+I designed, developed and tested the program on a FPGA board. Attached are the VHDL codes for all components used in the design. Each component of the design was also verified using waveforms before testing on the FPGA board.
