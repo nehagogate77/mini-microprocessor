@@ -1,0 +1,34 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+USE ieee.numeric_std.all;
+
+ENTITY ALU IS
+	PORT (Clock: IN STD_LOGIC;
+			A, B: IN UNSIGNED(7 DOWNTO 0);
+			student_id: IN UNSIGNED(3 DOWNTO 0);
+			OP: IN UNSIGNED(15 DOWNTO 0);
+			Neg: OUT STD_LOGIC;
+			R1: OUT UNSIGNED(3 DOWNTO 0);
+			R2: OUT UNSIGNED(3 DOWNTO 0));
+END ALU;
+
+ARCHITECTURE calculation OF ALU IS
+	SIGNAL Reg1, Reg2, Result: UNSIGNED(7 DOWNTO 0):=(OTHERS=>'0');
+	SIGNAL Reg4: UNISIGNED(0 TO 7);
+	BEGIN
+		Reg1 <= A;
+		Reg2 <= B;
+		
+		PROCESS(Clock, OP)
+		BEGIN
+			IF(rising_edge(Clock)) THEN
+				CASE OP IS
+					WHEN "0000000000000001" =>
+						Result <= Reg1 + Reg2;
+					WHEN "0000000000000010" =>
+						Result <= Reg1 - Reg2;
+					WHEN "0000000000000100" =>
+						Result <= NOT A;
+					WHEN "0000000000001000" =>
+						Result <=
